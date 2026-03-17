@@ -1,0 +1,12 @@
+{
+  "name": "job-assistant",
+  "private": true,
+  "packageManager": "pnpm@9.15.0",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "lint": "eslint . --ext .js,.mjs,.ts",
+    "typecheck": "if [ -f tsconfig.json ]; then tsc --noEmit; else echo 'No tsconfig.json found, skipping typecheck'; fi",
+    "format": "prettier --write .",
+    "dev": "pnpm -r dev"
+  }
+}

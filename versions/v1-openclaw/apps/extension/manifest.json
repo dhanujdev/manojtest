@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Job Assistant (v1)",
+  "version": "0.0.1",
+  "description": "Human-supervised job application assistant (local-first)",
+  "permissions": ["tabs", "activeTab"],
+  "host_permissions": ["http://127.0.0.1:3210/*"],
+  "action": {
+    "default_title": "Job Assistant",
+    "default_popup": "popup.html"
+  }
+}

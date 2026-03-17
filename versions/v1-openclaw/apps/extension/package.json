@@ -1,0 +1,12 @@
+{
+  "name": "@job-assistant/extension",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "echo todo"
+  },
+  "dependencies": {
+    "@job-assistant/shared": "workspace:*"
+  }
+}

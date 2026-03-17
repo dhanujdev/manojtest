@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Assistant</title>
+    <style>
+      body { font-family: system-ui, -apple-system, sans-serif; margin: 12px; width: 320px; }
+      button { width: 100%; padding: 8px 10px; margin: 6px 0; }
+      input, textarea { padding: 8px; border: 1px solid #ddd; border-radius: 6px; }
+      .row { margin: 8px 0; }
+      .muted { color: #666; font-size: 12px; }
+      pre { white-space: pre-wrap; word-break: break-word; background: #f6f6f6; padding: 8px; border-radius: 6px; }
+    </style>
+  </head>
+  <body>
+    <div class="row">
+      <div><strong>Job Assistant</strong></div>
+      <div class="muted">Local agent must be running on 127.0.0.1:3210</div>
+    </div>
+
+    <button id="capture">Capture current tab</button>
+    <button id="start" disabled>Start (Playwright headed)</button>
+
+    <div class="row" style="margin-top:10px; padding-top:10px; border-top:1px solid #eee;">
+      <div style="font-weight:700;">Profile (local)</div>
+      <div class="muted">Saved on this Mac. Used for autofill.</div>
+      <div style="display:flex; flex-direction:column; gap:6px; margin-top:8px;">
+        <input id="p_first" placeholder="First Name" />
+        <input id="p_last" placeholder="Last Name" />
+        <input id="p_email" placeholder="Email" />
+        <input id="p_phone" placeholder="Phone" />
+        <input id="p_linkedin" placeholder="LinkedIn URL" />
+        <input id="p_github" placeholder="GitHub URL" />
+        <input id="p_portfolio" placeholder="Portfolio / Website URL" />
+        <div style="font-weight:600; margin-top:8px; margin-bottom:4px;">Location</div>
+        <input id="p_street" placeholder="Street Address" />
+        <input id="p_city" placeholder="City" />
+        <input id="p_state" placeholder="State / Province" />
+        <input id="p_zip" placeholder="ZIP / Postal Code" />
+        <input id="p_country" placeholder="Country" />
+        <div style="font-weight:600; margin-top:8px; margin-bottom:4px;">Work Authorization</div>
+        <select id="p_work_auth" style="padding:8px; border:1px solid #ddd; border-radius:6px; width:100%; box-sizing:border-box;">
+          <option value="">-- Select --</option>
+          <option value="US Citizen">US Citizen</option>
+          <option value="Permanent Resident">Permanent Resident (Green Card)</option>
+          <option value="H1B">H1B Visa</option>
+          <option value="OPT/CPT">OPT / CPT</option>
+          <option value="TN Visa">TN Visa</option>
+          <option value="Other Visa">Other Visa</option>
+          <option value="Not Authorized">Not Authorized</option>
+        </select>
+        <label style="display:flex; gap:8px; align-items:center; margin-top:4px;" class="muted">
+          <input type="checkbox" id="p_sponsorship" />
+          Requires visa sponsorship
+        </label>
+        <div style="font-weight:600; margin-top:8px; margin-bottom:4px;">Current Position</div>
+        <input id="p_curr_company" placeholder="Current Company" />
+        <input id="p_curr_title" placeholder="Current Job Title" />
+        <input id="p_salary" placeholder="Salary Expectation (e.g. $120k)" />
+        <div style="font-weight:600; margin-top:8px; margin-bottom:4px;">Education</div>
+        <input id="p_university" placeholder="University / School" />
+        <input id="p_degree" placeholder="Degree (e.g. B.S. Computer Science)" />
+        <input id="p_grad_year" placeholder="Graduation Year (e.g. 2022)" />
+        <div style="font-weight:600; margin-top:8px; margin-bottom:4px;">Skills</div>
+        <input id="p_skills" placeholder="Skills (comma-separated, e.g. Python, React, SQL)" />
+      </div>
+      <button id="profileSave">Save profile</button>
+      <div class="muted" id="profileStatus"></div>
+    </div>
+
+    <div class="row" style="margin-top:10px; padding-top:10px; border-top:1px solid #eee;">
+      <div style="font-weight:700;">Saved Answers (Local)</div>
+      <div class="muted" id="savedStatus"></div>
+      <div id="savedList" style="margin-top:8px;"></div>
+    </div>
+
+    <div class="row muted" id="status">Idle</div>
+
+    <div id="review" class="row" style="display:none">
+      <div style="font-weight:700;">Review Before Submit</div>
+      <div class="muted" id="finalStep" style="display:none; margin-top:4px;">✔ Final step detected (Submit button present)</div>
+      <div class="muted" id="reviewUrl"></div>
+      <div id="reviewList" style="margin-top:8px;"></div>
+      <div class="muted" id="reviewStatus"></div>
+    </div>
+
+    <div id="fields" class="row" style="display:none">
+      <div class="muted">Extracted fields</div>
+      <div id="fieldsList"></div>
+    </div>
+
+    <div id="modalBackdrop" style="display:none; position: fixed; inset: 0; background: rgba(0,0,0,0.35);"></div>
+    <div id="modal" style="display:none; position: fixed; left: 12px; right: 12px; top: 20px; background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 12px;">
+      <div style="font-weight:700; margin-bottom: 6px;">Missing required field</div>
+      <div class="muted" id="modalLabel"></div>
+      <div class="muted" id="modalType" style="margin-bottom: 8px;"></div>
+      <div id="modalControl"></div>
+      <label class="muted" style="display:flex; gap:8px; align-items:center; margin-top:8px;">
+        <input type="checkbox" id="modalSave" />
+        Save this answer for future applications
+      </label>
+      <button id="modalSubmit" style="margin-top: 10px;">Submit value</button>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

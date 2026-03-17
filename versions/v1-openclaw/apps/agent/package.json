@@ -1,0 +1,21 @@
+{
+  "name": "@job-assistant/agent",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "electron-main.mjs",
+  "scripts": {
+    "dev": "electron .",
+    "build": "echo todo",
+    "start": "electron ."
+  },
+  "dependencies": {
+    "@job-assistant/shared": "workspace:*",
+    "electron": "^33.0.0",
+    "fastify": "^4.28.0",
+    "@fastify/cors": "^9.0.0",
+    "better-sqlite3": "^11.8.0",
+    "playwright": "^1.51.0",
+    "zod": "^3.25.0"
+  }
+}
