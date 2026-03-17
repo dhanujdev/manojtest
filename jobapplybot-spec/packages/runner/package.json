@@ -1,0 +1,19 @@
+{
+  "name": "@jobapplybot/runner",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "lint": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@jobapplybot/adapters": "workspace:*",
+    "@jobapplybot/protocol": "workspace:*",
+    "@jobapplybot/storage": "workspace:*",
+    "playwright-core": "^1.53.2"
+  }
+}

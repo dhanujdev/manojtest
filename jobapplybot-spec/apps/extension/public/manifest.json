@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "JobApplyBot",
+  "version": "0.1.0",
+  "description": "Local-first job application assistant popup for the JobApplyBot agent.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1/*"
+  ],
+  "action": {
+    "default_title": "JobApplyBot",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "jobapplybot",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.29.3",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev:agent": "pnpm --filter @jobapplybot/agent run dev",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "format": "prettier --check \"**/*.{ts,tsx,js,json,md,yml,yaml,html}\"",
+    "format:fix": "prettier --write \"**/*.{ts,tsx,js,json,md,yml,yaml,html}\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.10",
+    "prettier": "^3.5.3",
+    "turbo": "^2.5.0",
+    "typescript": "^5.8.2",
+    "vitest": "^3.0.8"
+  }
+}

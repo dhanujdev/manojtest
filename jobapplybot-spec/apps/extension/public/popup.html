@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JobApplyBot</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        margin: 0;
+        min-width: 360px;
+        background: #f7f7f2;
+        color: #1d1d1f;
+      }
+
+      main {
+        padding: 16px;
+        display: grid;
+        gap: 16px;
+      }
+
+      section {
+        background: #ffffff;
+        border: 1px solid #d8d6cb;
+        border-radius: 12px;
+        padding: 12px;
+      }
+
+      h1,
+      h2 {
+        margin: 0 0 8px;
+        font-size: 14px;
+      }
+
+      label {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+
+      input,
+      textarea,
+      button {
+        width: 100%;
+        box-sizing: border-box;
+        font: inherit;
+      }
+
+      input,
+      textarea {
+        margin-top: 4px;
+        border: 1px solid #bdb9a7;
+        border-radius: 8px;
+        padding: 8px;
+      }
+
+      button {
+        border: 0;
+        border-radius: 8px;
+        padding: 10px 12px;
+        background: #0c7c59;
+        color: #ffffff;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button.secondary {
+        background: #3a4f41;
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      pre {
+        white-space: pre-wrap;
+        word-break: break-word;
+        margin: 0;
+        font-size: 11px;
+      }
+
+      .muted {
+        color: #57534e;
+        font-size: 12px;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <h1>Agent Connection</h1>
+        <label>
+          Shared secret
+          <input id="secret" placeholder="Paste the secret shown by the agent" />
+        </label>
+        <div class="muted" id="connection-status">Disconnected</div>
+      </section>
+
+      <section>
+        <h2>Capture Job</h2>
+        <div class="row">
+          <button id="capture-tab" type="button">Use Current Tab</button>
+          <button class="secondary" id="capture-job" type="button">Capture URL</button>
+        </div>
+        <label>
+          Job URL
+          <input id="job-url" placeholder="https://boards.greenhouse.io/example/jobs/123" />
+        </label>
+        <label>
+          Source
+          <input id="job-source" value="popup" />
+        </label>
+        <button id="start-job" type="button">Start Run</button>
+        <div class="muted" id="job-id-label">No job captured yet</div>
+      </section>
+
+      <section>
+        <h2>Profile</h2>
+        <label>
+          Full name
+          <input id="profile-full-name" />
+        </label>
+        <label>
+          Email
+          <input id="profile-email" />
+        </label>
+        <label>
+          Phone
+          <input id="profile-phone" />
+        </label>
+        <label>
+          LinkedIn
+          <input id="profile-linkedin" />
+        </label>
+        <div class="row">
+          <button id="load-profile" type="button">Load Profile</button>
+          <button class="secondary" id="save-profile" type="button">Save Profile</button>
+        </div>
+      </section>
+
+      <section id="need-field-card" class="hidden">
+        <h2>Missing Field</h2>
+        <div class="muted" id="need-field-label"></div>
+        <label>
+          Value
+          <textarea id="need-field-value" rows="4"></textarea>
+        </label>
+        <label>
+          <input id="save-answer" type="checkbox" style="width: auto" />
+          Save this answer for future reuse
+        </label>
+        <button id="submit-field" type="button">Resume Run</button>
+      </section>
+
+      <section>
+        <h2>Run Status</h2>
+        <div class="muted" id="run-status">Idle</div>
+        <pre id="review-output">{}</pre>
+      </section>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
